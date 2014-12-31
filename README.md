@@ -20,8 +20,8 @@ otherwise a random seed based on the current time will be used.
 Vim movement keys (hjkl).  Think Pacman, but a maze.  A helpful strategy
 is, as you "eat" the asterisks, you can effectively "close off" sections
 of the maze that do not include the path to the exit, or that lead to dead
-ends. Set your terminal to 80 columns x 24 lines (check with tput cols &
-tput lines).
+ends (see screenshot below). Set your terminal to 80 columns x 24 lines
+(check with tput cols & tput lines).
 
 ##How it works
 The maze is basically a tree that has been "curled up" into a rectangular
