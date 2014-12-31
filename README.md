@@ -33,13 +33,16 @@ which works like this (from Wikipedia):
 2. Mark the current cell as visited, and get a list of its neighbors. For each neighbor, starting with a randomly selected neighbor:
   1. If that neighbor hasn't been visited, remove the wall between this cell and that neighbor, and then recur with that neighbor as the current cell.
 
-The entire screen is reprinted every time you move, and is intended to be
-played on an 80x24 terminal.  It will probably work (but look weird) on a
-larger terminal, and probably not work at all on a smaller one.  I'm working
-on making it playable on any size terminal.  This is actually easy to do, the
-code just needs to check the current terminal size, and then set the
-grid->width and grid->height properties at runtime (instead of defining them
-with preprocessor macros).
+The entire screen is reprinted every time you move. The game is intended
+to be played on an 80x24 terminal.  It will probably work (but look weird)
+on a larger terminal, and probably not work at all on a smaller one.  I'm
+working on making it playable on any size terminal.  This is actually easy
+to do, the code just needs to check the current terminal size, and then
+set the grid->width and grid->height properties at runtime (instead of
+defining them with preprocessor macros).  A possible enhancement would be
+to use ncurses to avoid filling up the terminal scroll buffer with useless
+garbage.  From another perspective, having a history of what moves you made
+could be useful, e.g. to see a replay of your game just by scrolling up.
 
 ##What it looks like
 ![maze 7](screenshot.png)

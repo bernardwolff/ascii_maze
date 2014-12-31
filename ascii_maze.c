@@ -20,8 +20,8 @@
 #define WALL '#'
 // the exit is actually the starting position, but we're using the
 // terminology from the wikipedia article
-#define EXIT_X 1
-#define EXIT_Y 1
+#define EXIT_X 1 // x-coordinate of the exit position
+#define EXIT_Y 1 // y-coordinate of the exit position
 #define NORTH 0
 #define SOUTH 1
 #define EAST 2
@@ -67,6 +67,7 @@ typedef struct
   // actually the goal position, but we're using the terminology from
   // the wikipedia article
   coord start_pos;
+  unsigned int seed;
 } maze_grid;
 
 int debug_printf(const char *format, ...)
@@ -96,6 +97,8 @@ void initialize(maze_grid* grid)
   {
     grid->cells[i] = (char*)malloc(sizeof(char) * grid->height);
   }
+
+  srand(grid->seed);
 
   debug_printf("initialized\n");
 }
@@ -148,6 +151,8 @@ void generate(maze_grid* grid, coord* cur, int depth)
 
   depth++;
 
+  // this will make the start position (actually the goal) as deep in
+  // the maze as possible
   if (depth > grid->max_depth)
   {
     grid->max_depth = depth;
@@ -208,6 +213,8 @@ void print(maze_grid* grid)
     }
     printf("\n");
   }
+
+  printf("[%i] you are the @, goal is the X, q=quit, h=left, j=down, k=up, l=right", grid->seed);
 }
 
 void move_player(maze_grid* grid, char key)
@@ -247,7 +254,6 @@ void game_loop(maze_grid* grid)
   do
   {
     print(grid);
-    printf("[you are the @, try to get to the X, q=quit, h=left, j=down, k=up, l=right]");
     fflush(stdout);
     //c = getchar();
     c = getch();
@@ -259,14 +265,12 @@ void game_loop(maze_grid* grid)
 int main(int argc, char *argv[])
 {
   maze_grid grid;
-  unsigned int seed;
   time_t t;
 
-  if (argc > 1) seed = atoi(argv[1]);
-  else seed = (unsigned)time(&t);
+  if (argc > 1) grid.seed = atoi(argv[1]);
+  else grid.seed = (unsigned)time(&t);
 
-  printf("using seed %i\n", seed);
-  srand(seed);
+  printf("using seed %i\n", grid.seed);
   debug_printf("aMAZEing\n");
   initialize(&grid);
   clear(&grid);
