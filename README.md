@@ -3,12 +3,14 @@ ascii_maze
 
 ##How to Build
 > make ascii_maze
+
 (Does not depend on any libraries other than the standard C libraries.
 Should work on any Unix'ish system, although I've only tested it on
 Linux Mint Qiana.)
 
 ##How to run
 > ./ascii_maze [seed_num]
+
 seed_num is the seed number passed to rand(3).
 The same number will yield the same maze every time.
 Seed_num can be any positive integer,
