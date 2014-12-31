@@ -13,7 +13,7 @@ Linux Mint Qiana.)
 
 seed_num is the seed number passed to rand(3).
 The same number will yield the same maze every time.
-Seed_num can be any positive integer,
+seed_num can be any positive integer,
 otherwise a random seed based on the current time will be used.
 
 ##How to play
@@ -42,5 +42,5 @@ grid->width and grid->height properties at runtime (instead of defining them
 with preprocessor macros).
 
 ##What it looks like
-![screenshot](screenshot.png)
+![maze 7](screenshot.png)
 
